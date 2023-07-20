@@ -1,16 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from "react-native";
+import Splash from './components/Splash';
+import Login from './components/Login';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import changePassword from "./components/changePassword";
+const Stackass=createNativeStackNavigator();
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+export default function App(){
+  return(
+    <NavigationContainer>
+      <Stackass.Navigator>
+        <Stackass.Screen name='Splash' component={Splash} />
+        <Stackass.Screen name='Login' component={Login}  />
+        <Stackass.Screen name='changePassword' component={changePassword} />
+      </Stackass.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
+}const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
