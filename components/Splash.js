@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import Logo from '../img/logo.jpg';
+import Logo from '../img/logo.png';
 
 const Splash = ({ navigation }) => {
+
   useEffect(() => {
     const timer = setTimeout(() => {
      
@@ -15,7 +16,7 @@ const Splash = ({ navigation }) => {
   return (
     <View style={styles.container}>
     <Image source = {Logo}
-    style={{width: 300, height: 100}} />
+    style={{width: '80%', height: 80}} />
    </View>
   );
 };
