@@ -14,7 +14,7 @@ import logo from '../img/logo.png'
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -49,7 +49,7 @@ const Login = () => {
               <Text style={{fontSize: 12, fontStyle: "italic", color: '#52616B'}}>Forgot your password ?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NavBar')}>
               <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Đăng nhập</Text>
             </TouchableOpacity>
           </View>
