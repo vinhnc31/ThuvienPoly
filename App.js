@@ -1,4 +1,6 @@
+import React from "react";
 import { StyleSheet } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -19,7 +21,30 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}} initialRouteName="Trang chủ">
+    <Tab.Navigator
+      initialRouteName="Trang chủ"
+      tabBarOptions={{
+        activeTintColor: '#FC6011',
+        inactiveTintColor: '#52616B',
+        labelStyle: { fontSize: 10 }
+      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let rn = route.name;
+
+          if (rn == 'Trang chủ') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (rn == 'Phiếu mượn') {
+            iconName = focused ? 'list' : 'list-outline';
+          } else if (rn == 'Tài khoản') {
+            iconName = focused ? 'settings' : 'settings-outline';
+          }else if (rn == 'Thành viên') {
+            iconName = focused ? 'person' : 'person-outline';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />
+        }, headerShown: false
+      })}>
       <Tab.Screen name="Trang chủ" component={HomeScreen} />
       <Tab.Screen name="Phiếu mượn" component={LoanScreen} />
       <Tab.Screen name="Thành viên" component={UserScreen} />
@@ -28,20 +53,21 @@ function MyTabs() {
   );
 }
 
-const Stackass=createNativeStackNavigator();
+const Stackass = createNativeStackNavigator();
 
-export default function App(){
-  return(
-    <NavigationContainer>
-      <Stackass.Navigator screenOptions={{headerShown: false}}>
-        {/* <Stackass.Screen name='splash' component={Splash}/> */}
-        <Stackass.Screen name='login' component={Login}/>
-        <Stackass.Screen name='NavBar' component={MyTabs}/>
-        <Stackass.Screen name='them_phieu_muon' component={AddLoanScreen}/>
+export default function App() {
+  return (
+    <NavigationContainer >
+    
+      <Stackass.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Stackass.Screen name='splash' component={Splash} />
+        <Stackass.Screen name='login' component={Login} /> */}
+        <Stackass.Screen name='NavBar' component={MyTabs} />
+        <Stackass.Screen name='them_phieu_muon' component={AddLoanScreen} />
       </Stackass.Navigator>
     </NavigationContainer>
   );
-}const styles = StyleSheet.create({
+} const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -49,3 +75,5 @@ export default function App(){
     justifyContent: 'center',
   },
 });
+
+
