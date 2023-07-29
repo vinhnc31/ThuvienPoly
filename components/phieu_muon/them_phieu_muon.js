@@ -26,7 +26,7 @@ const them_phieu_muon = ({ navigation }) => {
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Image source={require("../../img/Icon/go_back.png")} />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>Thêm Phiếu mượn</Text>
+                        <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>Thêm Phiếu Mượn</Text>
                         <View></View>
                     </View>
                     {/* phần body */}
