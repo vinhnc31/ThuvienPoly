@@ -11,8 +11,10 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { TextInput } from "react-native-paper";
-
+import icon_back from "../../img/Icon/go_back.png"
+import icon_search from "../../img/Icon/search.png"
 const { widthSrc, heightSrc } = Dimensions.get("window");
+
 
 const them_phieu_muon = ({ navigation }) => {
 
@@ -24,7 +26,7 @@ const them_phieu_muon = ({ navigation }) => {
                     {/* phần header */}
                     <View style={styles.header}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <Image source={require("../../img/Icon/go_back.png")} />
+                            <Image source={icon_back} />
                         </TouchableOpacity>
                         <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>Thêm Phiếu Mượn</Text>
                         <View></View>
@@ -35,7 +37,7 @@ const them_phieu_muon = ({ navigation }) => {
                         <View style={styles.infor_user}>
                             <View style={styles.header_infor_user}>
                                 <Text style={{ fontSize: 16, fontWeight: "bold", }}>Thông tin người mượn</Text>
-                                <Image source={require('../../img/Icon/search.png')} />
+                                <Image source={icon_search} />
                             </View>
                             <View >
                                 <View style={{ width: '100%', marginBottom: 16 }}>
