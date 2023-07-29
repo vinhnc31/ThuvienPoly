@@ -29,7 +29,7 @@ const them_thanh_vien = ({ navigation }) => {
               <Image source={require("../../img/Icon/go_back.png")} />
             </TouchableOpacity>
             <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>
-              Thêm Phiếu mượn
+              Thêm Thành Viên
             </Text>
             <View></View>
           </View>
@@ -39,7 +39,7 @@ const them_thanh_vien = ({ navigation }) => {
             <View style={styles.infor_user}>
               <View style={styles.header_infor_user}>
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                  Thông tin người mượn
+                  Thông tin thành viên
                 </Text>
                 <Image source={require("../../img/Icon/search.png")} />
               </View>
