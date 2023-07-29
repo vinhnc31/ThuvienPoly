@@ -13,6 +13,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { TextInput } from "react-native-paper";
 import icon_back from "../../img/Icon/go_back.png"
 import icon_search from "../../img/Icon/search.png"
+
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
 

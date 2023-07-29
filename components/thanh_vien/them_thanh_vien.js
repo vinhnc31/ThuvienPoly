@@ -12,6 +12,9 @@ import {
 
 import { ScrollView } from "react-native-gesture-handler";
 import { TextInput, RadioButton } from "react-native-paper";
+import icon_back from "../../img/Icon/go_back.png"
+
+
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
@@ -26,7 +29,7 @@ const them_thanh_vien = ({ navigation }) => {
           {/* phần header */}
           <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Image source={require("../../img/Icon/go_back.png")} />
+              <Image source={icon_back} />
             </TouchableOpacity>
             <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>
               Thêm Thành Viên
@@ -41,7 +44,7 @@ const them_thanh_vien = ({ navigation }) => {
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
                   Thông tin thành viên
                 </Text>
-                <Image source={require("../../img/Icon/search.png")} />
+               
               </View>
               <View>
                 <View style={{ width: "100%", marginBottom: 16 }}>
