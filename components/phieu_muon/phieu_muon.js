@@ -11,14 +11,12 @@ import {
     Image,
     TouchableOpacity,
 } from "react-native";
-
-import icon_search from '../../img/Icon/search.png';
-import icon_filter from '../../img/Icon/bars_filter.png';
-import icon_add from '../../img/Icon/add.png';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import DropdownComponent from './Dropdown_status';
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
-const DATA = [
+export const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
         title: 'Phiếu mượn 1',
@@ -107,8 +105,9 @@ const item_view = ({ item }) => {
         <View style={styles.item_view}>
             <View style={styles.header_item}>
                 <Text style={styles.title_item}>{item.title}</Text>
-                <View style={{ width: '100%', height: 1, backgroundColor: '#D1D1D1' }} />
-                <View>
+                <View style={{ width: '100%', height: 1, backgroundColor: '#D1D1D1', flex: 4}} />
+                <View style = {{flex: 4, marginStart: 4}}>
+                    <DropdownComponent/>
                 </View>
             </View>
             <View style={styles.body_item}>
@@ -147,7 +146,6 @@ const item_view = ({ item }) => {
                 </View>
 
             </View>
-
         </View>
     );
 };
@@ -161,8 +159,12 @@ const phieu_muon = ({ navigation }) => {
                 <View style={styles.header}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", marginStart: 16 }}>PHIẾU MƯỢN</Text>
                     <View style={{ flexDirection: 'row', marginEnd: 16, justifyContent: "space-between", alignItems: "center", width: '15%' }}>
-                        <Image source={icon_search} style={styles.icon_style} />
-                        <Image source={icon_filter} style={styles.icon_style} />
+                        <TouchableOpacity>
+                            <Icon name="search" size={24} color="#FC6011" />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Icon name="filter" size={24} color="#FC6011" />
+                        </TouchableOpacity>
                     </View>
                 </View>
                 {/* body */}
@@ -171,24 +173,24 @@ const phieu_muon = ({ navigation }) => {
                         Tổng phiếu mượn: {DATA.length}
                     </Text>
                     {/* phần danh sách phiếu mượn */}
-                    <View style={{ height: "100%", backgroundColor: "#fff" }}>
+                    <View style={{ height: "100%", backgroundColor: "#fff", width: '100%' }}>
                         <FlatList
                             data={DATA}
                             renderItem={item_view}
-                            keyExtractor={item => item.id}
-                        />
+                            keyExtractor={item => item.id}/>
                     </View>
                 </View>
                 {/* Button */}
-
-                <TouchableOpacity style={styles.float_button} onPress={() => navigation.navigate('them_phieu_muon')}>
-                    <View style={{ width: 60, height: 60, backgroundColor: '#FC6011', borderRadius: "50%", alignItems: "center", justifyContent: "center" }}>
-                        <View>
-                            <Image source={icon_add} />
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={{ flex: 9 }}></View>
+                    <TouchableOpacity style={styles.float_button} onPress={() => navigation.navigate('them_phieu_muon')}>
+                        <View style={{ width: 60, height: 60, backgroundColor: '#FC6011', borderRadius: "50%", alignItems: "center", justifyContent: "center" }}>
+                            <View>
+                                <Icon name="plus-circle" size={32} color="#fff" />
+                            </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
-
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -196,7 +198,7 @@ const phieu_muon = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: '90%',
+        height: '91.5%',
         alignContent: "center",
         backgroundColor: "#F0F5F9",
     },
@@ -205,10 +207,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#fff",
         justifyContent: "space-between",
-        paddingTop: 48,
+        paddingTop: 26,
         paddingBottom: 16,
         marginBottom: 16,
-
     },
 
     body: {
@@ -222,13 +223,12 @@ const styles = StyleSheet.create({
     item_view: {
         backgroundColor: "#EBE9E9",
         padding: 8,
-        // marginStart:8,
-        // marginEnd: 8,
         marginBottom: 8,
         borderRadius: 6,
     },
 
     header_item: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -236,9 +236,10 @@ const styles = StyleSheet.create({
     },
 
     title_item: {
+        flex: 4,
         fontSize: 16,
         fontWeight: "500",
-        marginEnd: 6,
+        marginEnd: 4,
     },
 
     body_item: {
@@ -259,10 +260,11 @@ const styles = StyleSheet.create({
     },
 
     float_button: {
+        flex: 1,
         flexDirection: "row",
         justifyContent: "flex-end",
         marginEnd: 32,
-        marginTop: -56,
+        marginTop: -48,
     }
 
 });
