@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
     StyleSheet,
-    StatusBar,
     Dimensions,
     SafeAreaView,
     FlatList,
-    SectionList,
-    Image,
     TouchableOpacity,
+    TextInput,
 } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AntIcon from '@expo/vector-icons/AntDesign';
 import DropdownComponent from './Dropdown_status';
-
+import Search_View from "./Search_View";
+import useFilter from './useFilter';
 const { widthSrc, heightSrc } = Dimensions.get("window");
+import {user, book, librarian, borowing_slip} from '../../repositories/index'
 
-export const DATA = [
+const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
         title: 'Phiếu mượn 1',
@@ -105,9 +106,9 @@ const item_view = ({ item }) => {
         <View style={styles.item_view}>
             <View style={styles.header_item}>
                 <Text style={styles.title_item}>{item.title}</Text>
-                <View style={{ width: '100%', height: 1, backgroundColor: '#D1D1D1', flex: 4}} />
-                <View style = {{flex: 4, marginStart: 4}}>
-                    <DropdownComponent/>
+                <View style={{ width: '100%', height: 1, backgroundColor: '#D1D1D1', flex: 4 }} />
+                <View style={{ flex: 4, marginStart: 4 }}>
+                    <DropdownComponent />
                 </View>
             </View>
             <View style={styles.body_item}>
@@ -150,22 +151,34 @@ const item_view = ({ item }) => {
     );
 };
 
-const phieu_muon = ({ navigation }) => {
+const test2 = ({ navigation }) => {
+
+    const [borowing, setBorowing] = useState ({});
+
+    const { showFilter, filterValue, handleFilter, handleCancel, setFilterValue } = useFilter();
 
     return (
         <SafeAreaView style={{ backgroundColor: '#fff' }}>
             <View style={styles.container}>
                 {/* header */}
-                <View style={styles.header}>
-                    <Text style={{ fontSize: 20, fontWeight: "bold", marginStart: 16 }}>PHIẾU MƯỢN</Text>
-                    <View style={{ flexDirection: 'row', marginEnd: 16, justifyContent: "space-between", alignItems: "center", width: '15%' }}>
-                        <TouchableOpacity>
-                            <Icon name="search" size={24} color="#FC6011" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Icon name="filter" size={24} color="#FC6011" />
-                        </TouchableOpacity>
-                    </View>
+                <View>
+                    {showFilter ? (
+                        <View style={styles.header}>
+                            <Search_View filterValue={filterValue} onChangeText={setFilterValue} onCancel={handleCancel} />
+                        </View>
+                    ) : (
+                        <View style={styles.header}>
+                            <Text style={{ fontSize: 20, fontWeight: "bold", marginStart: 16 }}>TEST 2</Text>
+                            <View style={{ flexDirection: 'row', marginEnd: 16, justifyContent: "space-between", alignItems: "center", width: '15%' }}>
+                                <TouchableOpacity onPress={handleFilter}>
+                                    <Icon name="search" size={24} color="#FC6011" />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Icon name="filter" size={24} color="#FC6011" />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    )}
                 </View>
                 {/* body */}
                 <View style={styles.body}>
@@ -177,7 +190,7 @@ const phieu_muon = ({ navigation }) => {
                         <FlatList
                             data={DATA}
                             renderItem={item_view}
-                            keyExtractor={item => item.id}/>
+                            keyExtractor={item => item.id} />
                     </View>
                 </View>
                 {/* Button */}
@@ -195,6 +208,7 @@ const phieu_muon = ({ navigation }) => {
         </SafeAreaView>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -265,7 +279,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         marginEnd: 32,
         marginTop: -48,
-    }
-
+    },
 });
-export default phieu_muon;
+
+export default test2;

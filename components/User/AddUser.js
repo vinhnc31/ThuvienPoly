@@ -41,7 +41,6 @@ const them_thanh_vien = ({ navigation }) => {
                 <Text style={{ fontSize: 16, fontWeight: "bold" }}>
                   Thông tin thành viên
                 </Text>
-                <Image source={require("../../img/Icon/search.png")} />
               </View>
               <View>
                 <View style={{ width: "100%", marginBottom: 16 }}>
