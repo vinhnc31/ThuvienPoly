@@ -14,11 +14,14 @@ import Login from './components/Login';
 import HomeScreen from './components/trang_chu/Home';
 import LoanScreen from './components/phieu_muon/phieu_muon';
 import UserScreen from './components/thanh_vien/thanh_vien';
-import SettingScreen from './components/tai_khoan/setting';
+import SettingScreen from './components/tai_khoan/Setting';
 import AddLoanScreen from './components/phieu_muon/them_phieu_muon';
 import AddUserScreen from './components/thanh_vien/them_thanh_vien'
 import infoUserScreen from './components/thanh_vien/thong_tin_thanh_vien';
 import editUserScreen from './components/thanh_vien/chinh_sua_thong_tin';
+import ChangePassword from "./components/tai_khoan/componentsSetting/ChangePassword";
+import Rank from "./components/tai_khoan/componentsSetting/Rank";
+import BookMark from "./components/tai_khoan/componentsSetting/BookMark";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +44,7 @@ function MyTabs() {
           } else if (rn == 'Phiếu mượn') {
             iconName = focused ? 'list' : 'list-outline';
           } else if (rn == 'Tài khoản') {
-            iconName = focused ? 'settings' : 'settings-outline';
+            iconName = focused ? 'Settings' : 'settings-outline';
           }else if (rn == 'Thành viên') {
             iconName = focused ? 'person' : 'person-outline';
           }
@@ -60,9 +63,14 @@ const Stackass = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer >
-    
+    <NavigationContainer>
       <Stackass.Navigator screenOptions={{ headerShown: false }}>
+        <Stackass.Screen name="login" component={Login} />
+        <Stackass.Screen name="ChangePassword" component={ChangePassword} />
+        <Stackass.Screen name="Rank" component={Rank} />
+        <Stackass.Screen name="BookMark" component={BookMark} />
+        <Stackass.Screen name="NavBar" component={MyTabs} />
+        <Stackass.Screen name="them_phieu_muon" component={AddLoanScreen} />
         {/* <Stackass.Screen name='splash' component={Splash} />
         <Stackass.Screen name='login' component={Login} /> */}
         <Stackass.Screen name='NavBar' component={MyTabs} />
