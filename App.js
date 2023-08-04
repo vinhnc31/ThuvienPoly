@@ -16,7 +16,9 @@ import LoanScreen from './components/phieu_muon/phieu_muon';
 import UserScreen from './components/thanh_vien/thanh_vien';
 import SettingScreen from './components/tai_khoan/setting';
 import AddLoanScreen from './components/phieu_muon/them_phieu_muon';
-import AddUserScrren from './components/thanh_vien/them_thanh_vien'
+import AddUserScreen from './components/thanh_vien/them_thanh_vien'
+import infoUserScreen from './components/thanh_vien/thong_tin_thanh_vien';
+import editUserScreen from './components/thanh_vien/chinh_sua_thong_tin';
 
 const Tab = createBottomTabNavigator();
 
@@ -65,7 +67,9 @@ export default function App() {
         <Stackass.Screen name='login' component={Login} /> */}
         <Stackass.Screen name='NavBar' component={MyTabs} />
         <Stackass.Screen name='them_phieu_muon' component={AddLoanScreen} />
-        <Stackass.Screen name='them_thanh_vien' component={AddUserScrren}/>
+        <Stackass.Screen name='them_thanh_vien' component={AddUserScreen}/>
+        <Stackass.Screen name='thong_tin_thanh_vien' component={infoUserScreen}/>
+        <Stackass.Screen name='chinh_sua_thanh_vien' component={editUserScreen}/>
       </Stackass.Navigator>
     </NavigationContainer>
   );

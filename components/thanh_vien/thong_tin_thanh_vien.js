@@ -74,7 +74,7 @@ const thong_tin_thanh_vien = ({ navigation }) => {
               marginBottom: 16,
               marginTop: "55%",
             }}
-            onPress={() => navigation.navigate("chinh_sua_thong_tin")}
+            onPress={() => navigation.navigate("chinh_sua_thanh_vien")}
           >
             <Text style={{ color: "white", fontSize: 16, fontWeight: "500" }}>
               Chỉnh sửa thông tin
