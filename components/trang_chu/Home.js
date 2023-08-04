@@ -6,6 +6,7 @@ const home = () => {
         <View>
             <SafeAreaView>
                 <Text>Đây là trang chủ</Text>
+                <Text>hi</Text>
             </SafeAreaView>
         </View>
     );
