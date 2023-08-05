@@ -11,7 +11,7 @@ import ChangePassword from "./components/ChangePassword";
 import Splash from './components/Splash';
 import Login from './components/Login';
 import SettingScreen from './components/tai_khoan/Setting'
-import HomeScreen from './components/Home/Home';
+import HomeScreen from './components/Home/Home'
 import LoanScreen from './components/BorowingSlip/PhieuMuon';
 import UserScreen from './components/User/ThanhVien';
 import AddBorowingSlipScreen from './components/BorowingSlip/AddBorowingSlip';
