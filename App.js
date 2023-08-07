@@ -9,8 +9,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import màn hình
 import Splash from './components/Splash';
 import Login from './components/Login';
-import ChangePassword from "./components/ChangePassword";
-import SettingScreen from './components/tai_khoan/Setting'
+import ChangePassword from "./components/changePassword";
+import SettingScreen from './components/tai_khoan/setting'
 import HomeScreen from './components/Home/Home'
 import LoanScreen from './components/BorowingSlip/PhieuMuon';
 import UserScreen from './components/User/ThanhVien';
