@@ -161,7 +161,7 @@ const phieu_muon = ({ navigation }) => {
                 <View>
                     {showFilterB ? (
                         <View style={styles.header}>
-                            <Search_View filterValue={filterValueB} onChangeText={setFilterValueB} onCancel={handleCancelB} />
+                            <SearchView filterValue={filterValueB} onChangeText={setFilterValueB} onCancel={handleCancelB} />
                         </View>
                     ) : (
                         <View style={styles.header}>

@@ -7,9 +7,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // import màn hình
-import ChangePassword from "./components/ChangePassword";
 import Splash from './components/Splash';
 import Login from './components/Login';
+import ChangePassword from "./components/ChangePassword";
 import SettingScreen from './components/tai_khoan/Setting'
 import HomeScreen from './components/Home/Home'
 import LoanScreen from './components/BorowingSlip/PhieuMuon';
@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Thành viên"
+      initialRouteName="Trang chủ"
       tabBarOptions={{
         activeTintColor: '#FC6011',
         inactiveTintColor: '#52616B',

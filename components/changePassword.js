@@ -10,14 +10,21 @@ import {
 import { TextInput, Button, Image } from "react-native-paper";
 import BackgoundLogin from '../img/backgound.png';
 import LogoLogin from '../img/logo.jpg';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
 const changePassword = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [currentPass, setCurrentPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [rePass, setrePass] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const handleLogin = () => {
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const handleChangePass = () => {
     // Handle login logic here
   };
 
@@ -27,26 +34,69 @@ const changePassword = () => {
         <View style={styles.container}>
           <View style={{ backgroundColor: '#fff', paddingHorizontal: 32, borderRadius: 12 }}>
             <Text style={{ fontSize: 24, fontStyle: 'normal', color: '#FC6011', alignItems: 'flex-start', fontWeight: "bold", marginTop: 16 }}>Đổi mật khẩu</Text>
-            <Text style={{ marginTop: 30 }}>Email</Text>
             <View>
-              <TextInput
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-                style={styles.text}
-              />
+              <Text style={{ marginTop: 30 }}>Mật khẩu hiện tại</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <TextInput
+                  value={currentPass}
+                  onChangeText={(text) => setCurrentPass(text)}
+                  secureTextEntry={!isPasswordVisible}
+                  style={styles.text} />
+                <TouchableOpacity style={{ justifyContent: "center", alignItems: "center", marginStart: -32, marginBottom: -8 }}
+                  onPress={togglePasswordVisibility}>
+                  {isPasswordVisible ? (
+                    <Icon name="eye-slash" size={24} color={"#FC6011"} />
+                  ) : (
+                    <Icon name="eye" size={24} color={"#FC6011"} />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
-            <Text style={{ marginTop: 40 }}>Password</Text>
-            <TextInput
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              style={styles.text}
-            />
+
+            <View>
+              <Text style={{ marginTop: 30 }}>Mật khẩu mới</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <TextInput
+                  value={newPass}
+                  onChangeText={(text) => setNewPass(text)}
+                  secureTextEntry={!isPasswordVisible}
+                  style={styles.text} />
+                <TouchableOpacity style={{ justifyContent: "center", alignItems: "center", marginStart: -32, marginBottom: -8 }}
+                  onPress={togglePasswordVisibility}>
+                  {isPasswordVisible ? (
+                    <Icon name="eye-slash" size={24} color={"#FC6011"} />
+                  ) : (
+                    <Icon name="eye" size={24} color={"#FC6011"} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View>
+              <Text style={{ marginTop: 30 }}>Nhập lại mật khẩu</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <TextInput
+                  value={rePass}
+                  onChangeText={(text) => setrePass(text)}
+                  secureTextEntry={!isPasswordVisible}
+                  style={styles.text} />
+                <TouchableOpacity style={{ justifyContent: "center", alignItems: "center", marginStart: -32, marginBottom: -8 }}
+                  onPress={togglePasswordVisibility}>
+                  {isPasswordVisible ? (
+                    <Icon name="eye-slash" size={24} color={"#FC6011"} />
+                  ) : (
+                    <Icon name="eye" size={24} color={"#FC6011"} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+
             <TouchableOpacity style={styles.font}>
               <Text style={{ fontStyle: 'italic', }}>Forgot your password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity mode="contained" onPress={handleLogin} style={styles.button}>
-              <Text style = {{fontWeight:"600", color: 'white'}}>Đăng nhập</Text>
+            <TouchableOpacity mode="contained" onPress={handleChangePass} style={styles.button}>
+              <Text style={{ fontWeight: "600", color: 'white' }}>Đăng nhập</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -77,12 +127,13 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: widthSrc,
     height: 48,
-    alignItems:"center",
-    justifyContent:"center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   text: {
-    fontSize: 16,
+    flex: 1,
+    fontSize: 14,
     color: "#ffffff",
     borderRadius: 6,
     width: widthSrc,
