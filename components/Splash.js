@@ -10,7 +10,7 @@ const Splash = ({ navigation }) => {
 
     return () => clearTimeout(timer);
   }, []);
-  navigation.replace('Login'); // Thay thế màn hình hiện tại bằng màn hình tiếp theo
+  navigation.replace('changePassword'); // Thay thế màn hình hiện tại bằng màn hình tiếp theo
 
   return (
     <View style={styles.container}>

@@ -38,10 +38,8 @@ const them_thanh_vien = ({ navigation }) => {
             {/* PHần thông tin user */}
             <View style={styles.infor_user}>
               <View style={styles.header_infor_user}>
-                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                  Thông tin thành viên
-                </Text>
-                <Image source={require("../../img/Icon/search.png")} />
+                
+                
               </View>
               <View>
                 <View style={{ width: "100%", marginBottom: 16 }}>

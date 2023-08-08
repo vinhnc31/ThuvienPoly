@@ -25,25 +25,27 @@ const renderItem = ({ item }) => (
     </View>
   );
 
-const thanh_vien = () => {
+const thanh_vien = ({navigation}) => {
     return (
         <View>
-
-                <View style={styles.header}>
+          <View>
+          <View style={styles.header}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", marginStart: 16 }}>THÀNH VIÊN</Text>
                     <Image source={icon_search}/>
                 </View>
 
+<TouchableOpacity onPress={()=> navigation.navigate('thong_tin_thanh_vien')}>
                 <FlatList 
                 data={DATA}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
                 />
+                </TouchableOpacity>
+          </View>
+      {/* Button */}
 
-                {/* Button */}
-
-                <TouchableOpacity style={styles.float_button} onPress={() => navigation.navigate('thong_tin_thanh_vien')}>
-                <View style={{ width: 60, height: 60, backgroundColor: '#FC6011', borderRadius: 50, alignItems: "center", justifyContent: "center" }}>
+                <TouchableOpacity style={styles.float_button} onPress={() => navigation.navigate('them_thanh_vien')}>
+                <View style={{ width: 60, height: 60, backgroundColor: '#FC6011', borderRadius: 50, alignItems: "center", justifyContent: "center",marginTop:'95%' }}>
                         <View>
                             <Image source={icon_add} />
                         </View>

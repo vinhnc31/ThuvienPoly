@@ -28,9 +28,9 @@ const chinh_sua_thong_tin = ({navigation}) => {
         <View style={styles.container}>
           {/* phần header */}
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            {/* <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="angle-left" size={24} color="white" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>
               Chỉnh sửa thông tin
             </Text>
