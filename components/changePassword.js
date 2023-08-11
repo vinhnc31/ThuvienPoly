@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
-const changePassword = () => {
+const ChangePassword = ({navigation}) => {
   const [currentPass, setCurrentPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [rePass, setrePass] = useState("");
@@ -33,7 +33,12 @@ const changePassword = () => {
       <ImageBackground source={BackgoundLogin} style={{ width: widthSrc, height: '100%' }}>
         <View style={styles.container}>
           <View style={{ backgroundColor: '#fff', paddingHorizontal: 32, borderRadius: 12 }}>
-            <Text style={{ fontSize: 24, fontStyle: 'normal', color: '#FC6011', alignItems: 'flex-start', fontWeight: "bold", marginTop: 16 }}>Đổi mật khẩu</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, }}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Icon name="angle-left" color={"#FC6011"} size={24} />
+              </TouchableOpacity>
+              <Text style={{ fontSize: 24, fontStyle: 'normal', color: '#FC6011', fontWeight: "bold" }}>Đổi mật khẩu</Text>
+            </View>
             <View>
               <Text style={{ marginTop: 30 }}>Mật khẩu hiện tại</Text>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -145,4 +150,4 @@ const styles = StyleSheet.create({
   },
 
 });
-export default changePassword;
+export default ChangePassword;

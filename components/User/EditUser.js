@@ -20,7 +20,7 @@ const { widthSrc, heightSrc } = Dimensions.get("window");
 
 const handleRadioPress = () => {};
 
-const chinh_sua_thong_tin = ({navigation}) => {
+const EditUser = ({navigation}) => {
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -188,4 +188,4 @@ const styles = StyleSheet.create({
     cursorColor: "#FC6011",
   },
 });
-export default chinh_sua_thong_tin;
+export default EditUser;

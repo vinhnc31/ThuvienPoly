@@ -1,115 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import icon_search from "../../img/Icon/search.png"
 import { FlatList } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { member_api } from '../../responsitories/index'
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-  {
-    id: 'bd7acbea-c1b1-46c2-ae5-3ad5abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-
-  {
-    id: 'bd7acbea-cb1-46c2-aed5-3ad53abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-
-  {
-    id: 'bd7acbea-1b1-46c2-aed5-3ad53abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-
-  {
-    id: 'bd7acbea-c1b-46c2-aed5-3ad53abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-  {
-    id: 'bdacbea-c1b1-46c2-aed5-3ad53abb28ba',
-    name: 'Lại Duy Hưng',
-    gender: 'Nam',
-    dateOfBirth: "22/07/2003",
-    phoneNumber: "0378965423",
-    email: 'hungldqn227@gmail.com',
-    address: "Mai dịch-Cầu giấy-Hà Nội",
-  },
-
-
-]
-
-const renderItem = ({ item, navigation }) => (
-  
-
-  <TouchableOpacity onPress={() => navigation.navigate('InfoUser')}>
+const ItemView = ({navigation, user}) => (
+  <TouchableOpacity onPress={() => navigation.navigate('InfoUser', { userId: user.id})}>
     <View style={styles.item_view}>
       <View style={styles.header_item}>
-        <Text style={styles.title_item}>{item.name}</Text>
+        <Text style={styles.title_item}>{user.name}</Text>
       </View>
       <View style={styles.body_item}>
         <View style={styles.text_item}>
           <Text style={{ fontSize: 14 }}>Giới tính: </Text>
-          <Text style={{ fontSize: 14 }}>{item.gender}</Text>
+          <Text style={{ fontSize: 14 }}>{user.sex}</Text>
         </View>
 
         <View style={styles.text_item}>
           <Text style={{ fontSize: 14 }}>Ngày sinh: </Text>
-          <Text style={{ fontSize: 14 }}>{item.dateOfBirth}</Text>
+          <Text style={{ fontSize: 14 }}>{user.dateOfBirth}</Text>
         </View>
 
         <View style={styles.text_item}>
           <Text style={{ fontSize: 14 }}>Số điện thoại: </Text>
-          <Text style={{ fontSize: 14 }}>{item.phoneNumber}</Text>
+          <Text style={{ fontSize: 14 }}>{user.phone}</Text>
         </View>
 
         <View style={styles.text_item}>
           <Text style={{ fontSize: 14 }}>Email: </Text>
-          <Text style={{ fontSize: 14 }}>{item.email}</Text>
+          <Text style={{ fontSize: 14 }}>{user.email}</Text>
         </View>
 
         <View style={styles.text_item}>
           <Text style={{ fontSize: 14 }}>Địa chỉ: </Text>
-          <Text style={{ fontSize: 14 }}>{item.address}</Text>
+          <Text style={{ fontSize: 14 }}>{user.address}</Text>
         </View>
       </View>
     </View>
   </TouchableOpacity>
 );
 
-const thanh_vien = ({ navigation }) => {
+const User = ({ navigation }) => {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const userList = await member_api.GetListUser();
+      // console.log(userList);
+      setUsers(userList);
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <View style={styles.container}>
@@ -129,13 +74,13 @@ const thanh_vien = ({ navigation }) => {
 
         <View style={styles.body}>
           <Text style={{ marginTop: 8, marginStart: 32, fontSize: 12, marginBottom: 16 }}>
-            Tổng thành viên: {DATA.length}
+            Tổng thành viên: {users.length}
           </Text>
           {/* phần danh sách thành viên */}
           <View style={{ height: "100%", backgroundColor: "#fff", width: '100%' }}>
             <FlatList
-              data={DATA}
-              renderItem={({ item }) => renderItem({ item, navigation })}
+              data={users}
+              renderItem={({ item }) => <ItemView user={item} navigation={navigation}/>}
               keyExtractor={item => item.id} />
           </View>
         </View>
@@ -231,4 +176,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default thanh_vien;
+export default User;

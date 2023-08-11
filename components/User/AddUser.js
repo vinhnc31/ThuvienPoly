@@ -17,7 +17,7 @@ const { widthSrc, heightSrc } = Dimensions.get("window");
 
 const handleRadioPress = () => {};
 
-const them_thanh_vien = ({ navigation }) => {
+const AddUser = ({ navigation }) => {
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -184,4 +184,4 @@ const styles = StyleSheet.create({
     cursorColor: "#FC6011",
   },
 });
-export default them_thanh_vien;
+export default AddUser;

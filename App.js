@@ -9,11 +9,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import màn hình
 import Splash from './components/Splash';
 import Login from './components/Login';
-import ChangePassword from "./components/changePassword";
+import ChangePassword from "./components/ChangePassword";
 import SettingScreen from './components/tai_khoan/setting'
 import HomeScreen from './components/Home/Home'
-import LoanScreen from './components/BorowingSlip/PhieuMuon';
-import UserScreen from './components/User/ThanhVien';
+import BorowingSlipScreen from './components/BorowingSlip/BorowingSlip';
+import UserScreen from './components/User/User';
 import AddBorowingSlipScreen from './components/BorowingSlip/AddBorowingSlip';
 import AddUserScreen from './components/User/AddUser'
 import InfoUserScreen from './components/User/InfoUser';
@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Trang chủ"
+      initialRouteName="Phiếu mượn"
       tabBarOptions={{
         activeTintColor: '#FC6011',
         inactiveTintColor: '#52616B',
@@ -43,14 +43,14 @@ function MyTabs() {
             iconName = focused ? 'list' : 'list-outline';
           } else if (rn == 'Tài khoản') {
             iconName = focused ? 'settings' : 'settings-outline';
-          }else if (rn == 'Thành viên') {
+          } else if (rn == 'Thành viên') {
             iconName = focused ? 'person' : 'person-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />
         }, headerShown: false
       })}>
       <Tab.Screen name="Trang chủ" component={HomeScreen} />
-      <Tab.Screen name="Phiếu mượn" component={LoanScreen} />
+      <Tab.Screen name="Phiếu mượn" component={BorowingSlipScreen} />
       <Tab.Screen name="Thành viên" component={UserScreen} />
       <Tab.Screen name="Tài khoản" component={SettingScreen} />
     </Tab.Navigator>
@@ -63,20 +63,22 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stackass.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stackass.Screen name='splash' component={Splash} />
+        {/* <Stackass.Screen name='splash' component={Splash} />
         <Stackass.Screen name='login' component={Login} /> */}
-        <Stackass.Screen name='NavBar' component={MyTabs} />
+        {/* <Stackass.Screen name='NavBar' component={MyTabs} /> */}
         <Stackass.Screen name="ChangePassword" component={ChangePassword} />
-        <Stackass.Screen name="Rank" component={Rank} />
+        {/* <Stackass.Screen name="Rank" component={Rank} />
         <Stackass.Screen name="BookMark" component={BookMark} />
         <Stackass.Screen name="AddBorowingSlip" component={AddBorowingSlipScreen} />
-        <Stackass.Screen name='AddUser' component={AddUserScreen}/>
-        <Stackass.Screen name='InfoUser' component={InfoUserScreen}/>
-        <Stackass.Screen name='EditUser' component={EditUserScreen}/>
+        <Stackass.Screen name='AddUser' component={AddUserScreen} />
+        <Stackass.Screen name='InfoUser' component={InfoUserScreen} />
+        <Stackass.Screen name='EditUser' component={EditUserScreen} /> */}
       </Stackass.Navigator>
     </NavigationContainer>
   );
-} const styles = StyleSheet.create({
+}
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',

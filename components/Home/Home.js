@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
-import icon_search from "../../img/Icon/search.png"
 import { FlatList } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from "react-native-elements";
 import { TextInput } from "react-native-paper";
 
 const DATA =
@@ -88,7 +86,7 @@ const DATA =
             "title": "Pride and Prejudice",
             "year": 1813
         },
-    ]
+]
 
 const renderItem = ({ item, navigation }) => (
     <TouchableOpacity onPress={() => navigation.navigate('InfoUser')} style={styles.item_view}>
@@ -116,7 +114,7 @@ const renderItem = ({ item, navigation }) => (
     </TouchableOpacity>
 );
 
-const home = ({ navigation }) => {
+const Home = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             {/* header */}
@@ -244,4 +242,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default home;
+export default Home;

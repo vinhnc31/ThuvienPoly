@@ -8,15 +8,39 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { member_respository as member_api } from '../../responsitories/index'
+
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
-const thong_tin_thanh_vien = ({ navigation }) => {
+const InfoUser = ({ navigation, route }) => {
+  const { userId } = route.params;
+  const [userDetails, setUserDetails] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      // Lấy danh sách thành viên từ API
+      const userList = await member_api.getListUser();
+      console.log("--------INFO USER--------", userList);
+      setUsers(userList);
+
+      // Tìm thành viên trong mảng users dựa trên userId
+      const user = userList.find((item) => item.id === userId);
+      console.log("--------INFO USER--------DETAILS", user);
+      setUserDetails(user);
+    };
+
+    fetchUserDetails();
+  }, [userId]);
+
+  console.log("ssssssssssssss", userDetails);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <View style={{ backgroundColor: '#fff', flex: 1, paddingBottom:55 }}>
+      <View style={{ backgroundColor: '#fff', flex: 1, paddingBottom: 55 }}>
         {/* header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -27,61 +51,62 @@ const thong_tin_thanh_vien = ({ navigation }) => {
           </Text>
           <View></View>
         </View>
-
         <View style={{
-          maxWidth: '100%', flexDirection: "column",flex:1,
+          maxWidth: '100%', flexDirection: "column", flex: 1,
         }}>
-          <View style={{ alignItems: "center", marginBottom: 64 }}>
-            <Text style={{ fontWeight: "bold", fontSize: 24 }}>
-              LẠI DUY HƯNG
-            </Text>
-            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-              (id thành viên)
-            </Text>
-          </View>
-
-          <View style = {{flex: 1,}}>
-            <View style={styles.text}>
-              <Text>Giới tính</Text>
-              <Text>Nam</Text>
+          {userDetails ? (
+            <View >
+              <View style={{ alignItems: "center", marginBottom: 64 }}>
+                <Text style={{ fontWeight: 'bold', fontSize: 24 }}>{userDetails.name}</Text>
+              </View>
+              <View>
+                <View style={styles.text}>
+                  <Text>Giới tính</Text>
+                  <Text>{userDetails.sex}</Text>
+                </View>
+                <View style={styles.text}>
+                  <Text>Ngày sinh</Text>
+                  <Text>04/02/2003</Text>
+                </View>
+                <View style={styles.text}>
+                  <Text>Địa chỉ</Text>
+                  <Text>{userDetails.address}</Text>
+                </View>
+                <View style={styles.text}>
+                  <Text>Số điện thoại</Text>
+                  <Text>{userDetails.phone}</Text>
+                </View>
+                <View style={styles.text}>
+                  <Text>Email</Text>
+                  <Text>{userDetails.email}</Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.text}>
-              <Text>Ngày sinh</Text>
-              <Text>04/02/2003</Text>
-            </View>
-            <View style={styles.text}>
-              <Text>Địa chỉ</Text>
-              <Text>Mai Dịch-Cầu Giấy-Hà Nội</Text>
-            </View>
-            <View style={styles.text}>
-              <Text>Số điện thoại</Text>
-              <Text>0389654775</Text>
-            </View>
-            <View style={styles.text}>
-              <Text>Email</Text>
-              <Text>vs@gmail.com</Text>
-            </View>
-          </View>
-
-          <TouchableOpacity
-            style={{
-              justifyContent: "flex-end",
-              alignItems: "center",
-              backgroundColor: "#FC6011",
-              paddingTop: 16,
-              paddingBottom: 16,
-              marginStart: 32,
-              marginEnd: 32,
-              borderRadius: 50,
-              marginBottom: 16,
-            }}
-            onPress={() => navigation.navigate("EditUser")}
-          >
-            <Text style={{ color: "white", fontSize: 16, fontWeight: "500" }}>
-              Chỉnh sửa thông tin
-            </Text>
-          </TouchableOpacity>
+          ) : (
+            <Text>Loading...</Text>
+          )}
         </View>
+
+
+
+        <TouchableOpacity
+          style={{
+            justifyContent: "flex-end",
+            alignItems: "center",
+            backgroundColor: "#FC6011",
+            paddingTop: 16,
+            paddingBottom: 16,
+            marginStart: 32,
+            marginEnd: 32,
+            borderRadius: 50,
+            marginBottom: 16,
+          }}
+          onPress={() => navigation.navigate("EditUser")}
+        >
+          <Text style={{ color: "white", fontSize: 16, fontWeight: "500" }}>
+            Chỉnh sửa thông tin
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -112,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default thong_tin_thanh_vien;
+export default InfoUser;
