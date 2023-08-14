@@ -3,9 +3,11 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView } from "r
 import icon_search from "../../img/Icon/search.png"
 import { FlatList } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { member_api } from '../../responsitories/index'
+import { member_api } from '../../respository/index'
 
 const ItemView = ({navigation, user}) => (
+
+  // click và gửi thông tin sang trang thông tin thành viên
   <TouchableOpacity onPress={() => navigation.navigate('InfoUser', { userId: user.id})}>
     <View style={styles.item_view}>
       <View style={styles.header_item}>
@@ -44,7 +46,7 @@ const ItemView = ({navigation, user}) => (
 const User = ({ navigation }) => {
 
   const [users, setUsers] = useState([]);
-
+  // gửi Yêu cầu đến API để lấy danh sách thành viên
   useEffect(() => {
     const fetchUsers = async () => {
       const userList = await member_api.GetListUser();

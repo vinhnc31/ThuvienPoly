@@ -10,7 +10,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Splash from './components/Splash';
 import Login from './components/Login';
 import ChangePassword from "./components/ChangePassword";
-import SettingScreen from './components/tai_khoan/setting'
 import HomeScreen from './components/Home/Home'
 import BorowingSlipScreen from './components/BorowingSlip/BorowingSlip';
 import UserScreen from './components/User/User';
@@ -26,7 +25,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Phiếu mượn"
+      initialRouteName="Trang chủ"
       tabBarOptions={{
         activeTintColor: '#FC6011',
         inactiveTintColor: '#52616B',
@@ -41,8 +40,6 @@ function MyTabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (rn == 'Phiếu mượn') {
             iconName = focused ? 'list' : 'list-outline';
-          } else if (rn == 'Tài khoản') {
-            iconName = focused ? 'settings' : 'settings-outline';
           } else if (rn == 'Thành viên') {
             iconName = focused ? 'person' : 'person-outline';
           }
@@ -52,7 +49,6 @@ function MyTabs() {
       <Tab.Screen name="Trang chủ" component={HomeScreen} />
       <Tab.Screen name="Phiếu mượn" component={BorowingSlipScreen} />
       <Tab.Screen name="Thành viên" component={UserScreen} />
-      <Tab.Screen name="Tài khoản" component={SettingScreen} />
     </Tab.Navigator>
   );
 }
@@ -63,16 +59,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stackass.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Stackass.Screen name='splash' component={Splash} />
-        <Stackass.Screen name='login' component={Login} /> */}
-        {/* <Stackass.Screen name='NavBar' component={MyTabs} /> */}
+        <Stackass.Screen name='splash' component={Splash} />
+        <Stackass.Screen name='login' component={Login} />
+        <Stackass.Screen name='NavBar' component={MyTabs} />
         <Stackass.Screen name="ChangePassword" component={ChangePassword} />
-        {/* <Stackass.Screen name="Rank" component={Rank} />
+        <Stackass.Screen name="Rank" component={Rank} />
         <Stackass.Screen name="BookMark" component={BookMark} />
         <Stackass.Screen name="AddBorowingSlip" component={AddBorowingSlipScreen} />
         <Stackass.Screen name='AddUser' component={AddUserScreen} />
         <Stackass.Screen name='InfoUser' component={InfoUserScreen} />
-        <Stackass.Screen name='EditUser' component={EditUserScreen} /> */}
+        <Stackass.Screen name='EditUser' component={EditUserScreen} />
       </Stackass.Navigator>
     </NavigationContainer>
   );

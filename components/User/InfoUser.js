@@ -10,7 +10,7 @@ import {
 
 import React, { useState, useEffect } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { member_respository as member_api } from '../../responsitories/index'
+import { member_api } from '../../respository/index'
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
@@ -22,7 +22,7 @@ const InfoUser = ({ navigation, route }) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       // Lấy danh sách thành viên từ API
-      const userList = await member_api.getListUser();
+      const userList = await member_api.GetListUser();
       console.log("--------INFO USER--------", userList);
       setUsers(userList);
 

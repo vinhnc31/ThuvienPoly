@@ -9,7 +9,7 @@ const Search_View = (props) => {
             <View style={styles.input}>
                 <TextInput placeholder="Nhập thông tin tìm kiếm" style={styles.TextInput} onChangeText={props.onChangeText} value={props.filterValue}></TextInput>
                 <TouchableOpacity style={styles.icon_search}>
-                    <AntIcon name="search1" size={16} color="#fff" />
+                    <AntIcon name="search1" size={18} color="#FC6011" />
                 </TouchableOpacity>
             </View>
             <TouchableOpacity onPress={props.onCancel}>
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     },
 
     icon_search: {
-        backgroundColor: '#FC6011',
         borderTopRightRadius: 11,
         borderBottomRightRadius: 11,
         paddingStart: 15,

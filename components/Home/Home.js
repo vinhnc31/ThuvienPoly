@@ -1,128 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TextInput } from "react-native-paper";
+import { book_api, category_api } from "../../respository/index";
 
-const DATA =
-    [
-        {
-            "author": "Chinua Achebe",
-            "country": "Nigeria",
-            "imageLink": "images/things-fall-apart.jpg",
-            "language": "English",
-            "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
-            "pages": 209,
-            "title": "Things Fall Apart",
-            "year": 1958
-        },
-        {
-            "author": "Hans Christian Andersen",
-            "country": "Denmark",
-            "imageLink": "images/fairy-tales.jpg",
-            "language": "Danish",
-            "link": "https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.\n",
-            "pages": 784,
-            "title": "Fairy tales",
-            "year": 1836
-        },
-        {
-            "author": "Dante Alighieri",
-            "country": "Italy",
-            "imageLink": "images/the-divine-comedy.jpg",
-            "language": "Italian",
-            "link": "https://en.wikipedia.org/wiki/Divine_Comedy\n",
-            "pages": 928,
-            "title": "The Divine Comedy",
-            "year": 1315
-        },
-        {
-            "author": "Unknown",
-            "country": "Sumer and Akkadian Empire",
-            "imageLink": "images/the-epic-of-gilgamesh.jpg",
-            "language": "Akkadian",
-            "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
-            "pages": 160,
-            "title": "The Epic Of Gilgamesh",
-            "year": -1700
-        },
-        {
-            "author": "Unknown",
-            "country": "Achaemenid Empire",
-            "imageLink": "images/the-book-of-job.jpg",
-            "language": "Hebrew",
-            "link": "https://en.wikipedia.org/wiki/Book_of_Job\n",
-            "pages": 176,
-            "title": "The Book Of Job",
-            "year": -600
-        },
-        {
-            "author": "Unknown",
-            "country": "India/Iran/Iraq/Egypt/Tajikistan",
-            "imageLink": "images/one-thousand-and-one-nights.jpg",
-            "language": "Arabic",
-            "link": "https://en.wikipedia.org/wiki/One_Thousand_and_One_Nights\n",
-            "pages": 288,
-            "title": "One Thousand and One Nights",
-            "year": 1200
-        },
-        {
-            "author": "Unknown",
-            "country": "Iceland",
-            "imageLink": "images/njals-saga.jpg",
-            "language": "Old Norse",
-            "link": "https://en.wikipedia.org/wiki/Nj%C3%A1ls_saga\n",
-            "pages": 384,
-            "title": "Nj\u00e1l's Saga",
-            "year": 1350
-        },
-        {
-            "author": "Jane Austen",
-            "country": "United Kingdom",
-            "imageLink": "images/pride-and-prejudice.jpg",
-            "language": "English",
-            "link": "https://en.wikipedia.org/wiki/Pride_and_Prejudice\n",
-            "pages": 226,
-            "title": "Pride and Prejudice",
-            "year": 1813
-        },
-]
-
-const renderItem = ({ item, navigation }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('InfoUser')} style={styles.item_view}>
-        <View style={styles.header_item}>
-            <Image source={require('../../img/book_img.png')} />
-            <Text style={styles.title_item}>{item.title}</Text>
-        </View>
-
-        <View style={styles.body_item}>
-            <View style={styles.text_item}>
-                <Text style={{ fontSize: 9}}>Tên TG: </Text>
-                <Text style={{ fontSize: 9,}}>{item.author}</Text>
-            </View>
-
-            <View style={styles.text_item}>
-                <Text style={{ fontSize: 9}}>Giá: </Text>
-                <Text style={{ fontSize: 9}}>{item.year}</Text>
-            </View>
-
-            <View style={styles.text_item}>
-                <Text style={{ fontSize: 9}}>số trang: </Text>
-                <Text style={{ fontSize: 9}}>{item.pages}</Text>
-            </View>
-        </View>
-    </TouchableOpacity>
-);
-
-const Home = ({ navigation }) => {
+const ItemView = ({ item, navigation}) => {
     return (
-        <SafeAreaView style={styles.container}>
-            {/* header */}
-            <View style={{ backgroundColor: '#F0F5F9' }}>
-                <View style={styles.header}>
-                    <Image source={require('../../img/logo.png')} style={{ width: 200, height: 50, marginStart: 16 }} />
+        <TouchableOpacity style={styles.item_view}>
+            <View style={styles.header_item}>
+                <Image source={require('../../img/book_img.png')} />
+                <Text style={styles.title_item}>{item.title}</Text>
+            </View>
+
+            <View style={styles.body_item}>
+                <View style={styles.text_item}>
+                    <Text style={{ fontSize: 9 }}>Tên TG: </Text>
+                    <Text style={{ fontSize: 9, }}>{item.author}</Text>
                 </View>
 
+                <View style={styles.text_item}>
+                    <Text style={{ fontSize: 9 }}>Giá: </Text>
+                    <Text style={{ fontSize: 9 }}>{item.price}</Text>
+                </View>
+
+                <View style={styles.text_item}>
+                    <Text style={{ fontSize: 9 }}>Thể loại: </Text>
+                    <Text style={{ fontSize: 9 }}>{item.nameCategory}</Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
+};
+
+const Home = ({ navigation }) => {
+    const [listBooks, setListBooks] = useState([]);
+
+    // gọi đến request API
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const books = await book_api.GetListBook();
+            setListBooks(books);
+        };
+
+        fetchBooks();
+    }, []);
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={{ backgroundColor: '#F0F5F9', flex: 1 }}>
+                {/* header */}
+                <View style={styles.header}>
+                    {/* infor user */}
+                    <TouchableOpacity style={styles.userInfo}>
+                        <Image source={require('../../img/avatar.png')} style={{ width: 40, height: 40, borderRadius: 50, marginEnd: 8 }} />
+                        <Text style={{ fontWeight: "500" }}>Lại Duy Hưng</Text>
+                    </TouchableOpacity>
+                    {/* đăng xuất icon */}
+                    <TouchableOpacity onPress={() => navigation.navigate('login')}>
+                        <Icon name="sign-out" color={"#FC6011"} size={32} />
+                    </TouchableOpacity>
+                </View>
+
+                {/* search view */}
                 <View style={{ marginVertical: 16, marginHorizontal: 8, alignItems: "center", justifyContent: "center" }}>
                     <View style={{ alignItems: "center", flexDirection: "row", paddingHorizontal: 8, paddingVertical: 6, backgroundColor: '#FAFAFAED', marginHorizontal: 32, borderRadius: 10 }}>
                         <Icon name="search" size={18} color={'#3C3C4399'} style={{ marginEnd: 16 }} />
@@ -133,7 +73,7 @@ const Home = ({ navigation }) => {
                 {/* body */}
                 <View style={styles.body}>
                     <View style={{ alignItems: "center", justifyContent: "space-between", flexDirection: "row", marginHorizontal: 24, marginVertical: 16 }}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 18, flex: 1 }}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
                             Kho sách
                         </Text>
                         <TouchableOpacity onPress={() => navigation.navigate('BookMark')}>
@@ -147,8 +87,9 @@ const Home = ({ navigation }) => {
                         <FlatList
                             style={{ width: '100%' }}
                             contentContainerStyle={{ alignItems: "center" }}
-                            data={DATA}
-                            renderItem={({ item }) => renderItem({ item, navigation })}
+                            data={listBooks}
+                            horizontal={false}
+                            renderItem={({ item }) => <ItemView item={item} navigation={navigation}/>}
                             keyExtractor={item => item.id}
                             numColumns={2}
                         />
@@ -162,7 +103,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         marginBottom: 16,
-        flex: 0.5,
+        flex: 1,
         alignContent: "center",
         flexDirection: 'column',
         backgroundColor: "#fff",
@@ -179,22 +120,30 @@ const styles = StyleSheet.create({
     },
 
     header: {
+        flex: 0.5,
         flexDirection: 'row',
         alignItems: "center",
         backgroundColor: "#fff",
         justifyContent: "space-between",
         paddingTop: 26,
         paddingBottom: 16,
+        paddingHorizontal: 32,
+    },
+
+    userInfo: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
     },
 
     body: {
-        height: '100%',
+        flex: 9,
         backgroundColor: "#fff",
+        marginBottom: 38
     },
 
     item_view: {
-        // alignItems: "center",
-        // justifyContent: "center",
         marginHorizontal: 6,
         width: '46%',
         backgroundColor: "#EBE9E9",
@@ -217,12 +166,12 @@ const styles = StyleSheet.create({
     body_item: {
         // flex: 1,
         flexDirection: "column",
-        justifyContent:"flex-start"
+        justifyContent: "flex-start"
     },
 
     text_item: {
         flexDirection: 'row',
-        justifyContent:"space-between",
+        justifyContent: "space-between",
         marginHorizontal: 6,
         marginBottom: 8,
     },

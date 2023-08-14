@@ -5,12 +5,10 @@ import Logo from '../img/logo.jpg';
 const Splash = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-     
+      navigation.replace('login'); // Thay thế màn hình hiện tại bằng màn hình tiếp theo
     }, 3000); // 5 giây
-
     return () => clearTimeout(timer);
   }, []);
-  navigation.replace('Login'); // Thay thế màn hình hiện tại bằng màn hình tiếp theo
 
   return (
     <View style={styles.container}>

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 const data = [
-    { name: 'Đang mượn', status: 1 },
-    { name: 'Đã trả', status: 2 },
-    { name: 'Quá hạn', status: 3 },
+    { name: 'Đang mượn' },
+    { name: 'Đã trả' },
+    { name: 'Quá hạn' },
 ];
 
-const DropdownComponent = () => {
+const DropdownComponent = ({ statusBorwingSLip }) => {
     const [name, setName] = useState(null);
 
     const renderItem = item => {
@@ -30,6 +30,23 @@ const DropdownComponent = () => {
                 return { color: '#ff0000', fontSize: 14 };
             default:
                 return { color: 'black', fontSize: 14 };
+        }
+    };
+
+    useEffect(() => {
+        setName(getSelectedText(statusBorwingSLip));
+    }, [statusBorwingSLip]);
+
+    const getSelectedText = (status) => {
+        switch (status) {
+            case "0":
+                return 'Đang mượn';
+            case "1":
+                return 'Đã trả';
+            case "2":
+                return 'Quá hạn';
+            default:
+                return 'Trạng thái';
         }
     };
 

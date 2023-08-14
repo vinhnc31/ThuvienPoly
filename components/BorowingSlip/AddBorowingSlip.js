@@ -19,7 +19,7 @@ import useFilter from './useFilter';
 
 const { widthSrc, heightSrc } = Dimensions.get("window");
 
-const them_phieu_muon = ({ navigation }) => {
+const AddBorowingSlip = ({ navigation }) => {
 
     const { showFilterU, filterValueU, handleFilterU, handleCancelU, setFilterValueU,
         showFilterB, filterValueB,handleFilterB,handleCancelB, setFilterValueB } = useFilter();
@@ -274,4 +274,4 @@ const styles = StyleSheet.create({
 
 
 });
-export default them_phieu_muon;
+export default AddBorowingSlip;
