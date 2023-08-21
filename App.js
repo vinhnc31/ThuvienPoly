@@ -9,7 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import màn hình
 import Splash from './components/Splash';
 import Login from './components/Login';
-import ChangePassword from "./components/ChangePassword";
+import changePassword from "./components/changePassword";
 import HomeScreen from './components/Home/Home'
 import BorowingSlipScreen from './components/BorowingSlip/BorowingSlip';
 import UserScreen from './components/User/User';
@@ -62,7 +62,7 @@ export default function App() {
         <Stackass.Screen name='splash' component={Splash} />
         <Stackass.Screen name='login' component={Login} />
         <Stackass.Screen name='NavBar' component={MyTabs} />
-        <Stackass.Screen name="ChangePassword" component={ChangePassword} />
+        <Stackass.Screen name="ChangePassword" component={changePassword} />
         <Stackass.Screen name="Rank" component={Rank} />
         <Stackass.Screen name="BookMark" component={BookMark} />
         <Stackass.Screen name="AddBorowingSlip" component={AddBorowingSlipScreen} />

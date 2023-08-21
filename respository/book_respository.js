@@ -5,7 +5,7 @@ const GetListBook = async () => {
         const response = await fetch(`${API_URL}${BOOKS_API_ENDPOINT}`);
         const json = await response.json();
         const listBooks = json.book;
-        console.log("BOOK-BOOKBOOK-BOOKBOOK-BOOK", listBooks);
+        console.log("BOOK-BOOKBOOK-BOOKBOOK-BOOK");
         return listBooks;
     } catch (error) {
         console.error(error);

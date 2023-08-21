@@ -40,6 +40,8 @@ const Home = ({ navigation }) => {
     useEffect(() => {
         const fetchBooks = async () => {
             const books = await book_api.GetListBook();
+            console.log("haizzzzz");
+
             setListBooks(books);
         };
 
